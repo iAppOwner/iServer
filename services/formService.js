@@ -35,3 +35,26 @@ exports.getUserForm = async(formdata) => {
      return null;
  }
  }
+
+ 
+ // UPDATE FORM
+ exports.updateUserForm = async(_id,sectionName,sectionFieldName,sectionFieldValue)=>{
+    try
+    {
+        let datas = await formModal.findByIdAndUpdate(
+            _id,
+            {
+              $set: {
+                ['sections.' + sectionName + '.fields.' + sectionFieldName + '.value']: sectionFieldValue
+              }
+            },
+            { new: true }
+          );
+          
+    return datas;
+}
+    catch(e)
+    {
+        return null;
+    }
+}

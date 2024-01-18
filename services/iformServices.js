@@ -28,5 +28,3 @@ exports.addiForm = async(iformdata) => {
  // GET ALL iFORMS
 
  // DELETE iFORM
-
- // UPDATE iFORM

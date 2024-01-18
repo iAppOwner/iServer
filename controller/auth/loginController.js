@@ -15,7 +15,7 @@ exports.login = asyncErrorHandler(async (_request,_response,next)=>{
     let serviceResponse = {msg : "Loggedin"};
     let datas = await getAuthUser(mail);
     // session['userid'] = datas.userid
-    console.log(_request.sessionID)
+    // console.log(_request.sessionID)
 //     if(!datas.session)
 // {   
      if(datas)
