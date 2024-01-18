@@ -107,8 +107,6 @@ exports.deleteuser = asyncErrorHandler(async (_request,_response,next)=>{
 // GET ALL USERS
 exports.getuser = asyncErrorHandler(async (_request,_response,next)=>{
     let username = _request.body.username.trim().toLowerCase();
-    // let token = _request.headers.authorization.substring(7);
-    // &&!vtoken(token)
     if(!username)
     {
         next(err)
@@ -122,9 +120,6 @@ exports.getuser = asyncErrorHandler(async (_request,_response,next)=>{
 
 // GET ALL USERS
 exports.accessuser = asyncErrorHandler(async (_request, _response, _next) => {
-    // const fileBuffer = _request.file.buffer;
-    // const base64Data = fileBuffer.toString('base64');
-    // const dataUrl = `data:${_request.file.mimetype};base64,${base64Data}`;
     let body = _request.body;
     let value = `${body.username.slice(0,-5)}/${body.filename.toUpperCase()}_${body.username.slice(0,-5).toUpperCase()}`
     const result = await userModal.updateOne(

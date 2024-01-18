@@ -4,7 +4,6 @@ const app = express();
 const userRouter = require('./router/userRouter')
 const authRouter = require('./router/authRouter')
 const adminRouter = require('./router/adminRoute')
-const saverRoute = require("./router/saveRoute")
 const iformRoute = require("./router/iformRouter")
 const formRoute = require("./router/formRouter")
 const dotenv = require("dotenv");
@@ -35,7 +34,6 @@ db_connection()
 app.use("/auth",authRouter)
 app.use("/users",userRouter)
 app.use("/admin",adminRouter)
-app.use("/save",saverRoute)
 app.use("/iform",iformRoute)
 app.use("/form",formRoute)
 
