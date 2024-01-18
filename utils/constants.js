@@ -9,17 +9,17 @@ exports.form = {
         type : 'text',
         title : true,
         icon : 'user',
-        status : '',
+        status : 'upending',
         value : '',
         mandate : true,
         comments : ''
       },
       {
-        name : 'Mobile',
-        type : 'text',
+        name : 'D.O.B',
+        type : 'date',
         title : true,
-        icon : 'mobile',
-        status : '',
+        icon : 'calendar',
+        status : 'upending',
         value : '',
         mandate : true,
         comments : ''
@@ -29,33 +29,33 @@ exports.form = {
         type : 'file',
         title : true,
         icon : 'file',
-        status : '',
-        value : '',
-        mandate : true,
-        comments : ''
-      },
-      {
-        name : 'PAN Card',
-        type : 'file',
-        title : true,
-        icon : 'file',
-        status : '',
+        status : 'upending',
         value : '',
         mandate : true,
         comments : ''
       },
       // {
-      //   name : 'Payment',
-      //   type : 'payment',
+      //   name : 'PAN Card',
+      //   type : 'file',
       //   title : true,
-      //   icon : 'credit-card',
-      //   amount : '2000',
-      //   currency : 'RS',
+      //   icon : 'file',
       //   status : '',
       //   value : '',
       //   mandate : true,
       //   comments : ''
       // },
+      {
+        name : 'Payment',
+        type : 'payment',
+        title : true,
+        icon : 'credit-card',
+        amount : '2000',
+        currency : 'RS',
+        status : 'upending',
+        value : '',
+        mandate : true,
+        comments : ''
+      },
       {
         name : 'Next',
       //   icon : 'floppy-disk',
@@ -67,10 +67,19 @@ exports.form = {
     name : "Feedback",
     fields : [
             {
-        type : 'area',
-        name : "Feedback",
+        type : 'radio',
+        name : "Willing to Join",
         title : true,
-        status : '',
+        status : 'upending',
+        radios : [{
+          label : "Yes",
+          value : "Yes"
+        },
+        {
+          label : "No",
+          value : "No"
+        },
+      ],
         value : '',
         mandate : true,
         comments : ''
