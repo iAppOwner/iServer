@@ -40,7 +40,7 @@ next(err)
         await addUser(data)
         let userData = await getUser({mail})
         let userid = userData._id;
-        let dataauth = {mail,role: 'user',password,userid}
+        let dataauth = {mail,role: 'user',password,userid,name}
         let iform = await getiForm({_id : iformid})
         await addAuthUser(dataauth)
             await add(`${userid}/`)

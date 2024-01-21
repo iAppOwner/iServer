@@ -28,6 +28,9 @@ const authSchema =  new mongoose.Schema({
   "userid": {
     "type" : String,
   },
+  "name": {
+    "type" : String,
+  },
   "session" : {
     "type"  : Boolean,
     "default" : false

@@ -26,7 +26,7 @@ exports.login = asyncErrorHandler(async (_request,_response,next)=>{
         serviceResponse.un = datas.userid;
         serviceResponse.role = datas.role;
         serviceResponse.mail = datas.mail;
-
+        serviceResponse.name = datas.name;
         let mail = datas.mail;
         await updateSession(mail)
        }
