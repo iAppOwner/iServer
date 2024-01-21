@@ -79,7 +79,20 @@ exports.del = async(filename)=>{
       } catch (err) {
         console.error('Error:', err);
         return false; // Return false indicating an error occurred during deletion
-      }
-    return true
-   
+      }   
 }
+
+exports.delFile = async(file)=>{
+  const params = {
+    Bucket: BUCKET,
+    Key: file
+  };
+  s3.deleteObject(params, (err, data) => {
+    if (err) {
+      console.error('Error deleting file:', err);
+    } else {
+      console.log('File deleted successfully:', data);
+    }
+  });
+}
+

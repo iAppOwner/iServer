@@ -18,10 +18,10 @@ const upload = multer({
             console.log("DATAS", req.body.userid);
             
             // Use path.basename to get the original filename without extension
-            const originalnameWithoutExtension = path.basename(file.originalname, path.extname(file.originalname));
+            // const originalnameWithoutExtension = path.basename(file.originalname, path.extname(file.originalname));
 
             // Construct the key using username, filename, and original filename without extension
-            const key = `${req.body.userid}/${req.body.filename.toUpperCase()}${path.extname(file.originalname)}`;
+            const key = `${req.body.userid}/${req.body.filename.toUpperCase().replace(/ /g, '_')}${path.extname(file.originalname)}`;
 
             cb(null, key);
         }
@@ -35,7 +35,10 @@ router.route("/update")
 .put(form.updateForm);
 
 router.route("/upload")
-.put(upload.single('file'),form.uploadFile);
+.put(upload.single('file'),form.updateForm);
+
+router.route("/delete")
+.put(form.deketeFile);
 
 //Export Module
 module.exports = router;
