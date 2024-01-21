@@ -58,6 +58,9 @@ router.route("/adduser/")
 router.route("/getallusers")
 .get(user.getallusers);
 
+router.route("/dashboard/:id")
+.get(user.dashboard);
+
 router.route("/get")
 .post(user.getuser);
 
@@ -66,6 +69,8 @@ router.route("/deleteuser/:username")
 
 router.route("/access")
 .post(upload.single('file'),user.accessuser);
+
+
 
 //Export Module
 module.exports = router;

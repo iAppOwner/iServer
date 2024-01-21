@@ -58,3 +58,35 @@ exports.getUserForm = async(formdata) => {
         return null;
     }
 }
+
+ // UPDATE FORM
+ exports.getFields = async(userid)=>{
+    try
+    {
+        const projection = {
+            'sections.fields': 1,
+            '_id': 0,
+          };
+          
+          console.log('Form fields for userid:', projection);
+          // Find documents with the specified userid and projection
+          let result = await formModal.find({userid},projection);
+          
+          // Output the result
+           result = result.map((obj)=>
+          {
+            return obj.sections.flat().map(fields=>{
+                return fields
+            })
+          })
+          result = result[0]
+          result = result.map(r=>{
+            return r.fields
+          })
+          return result.flat();          
+}
+    catch(e)
+    {
+        return null;
+    }
+}

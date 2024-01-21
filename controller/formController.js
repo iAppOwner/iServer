@@ -43,7 +43,6 @@ exports.deketeFile = asyncErrorHandler(async (_request, _response, _next) => {
     {
         next(err)
     }
-    console.log(sectionFieldValue)
     await delFile(sectionFieldValue)
     let updatedValues = await updateUserForm(_id,sectionName,sectionFieldName,'');
     let serviceResponse = { formdata : updatedValues }

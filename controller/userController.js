@@ -10,7 +10,7 @@ const {hashPassword} = require("../utils/bcryptPass")
 const userModal = require("../modal/userModal")
 const {addAuthUser, getAuthUser, deleteAuthUser} = require('../services/loginService')
 const {encryptMessage,decryptMessage} = require('../services/crypto')
-const {addUserForm,deleteUserForm} = require('../services/formService')
+const {addUserForm,deleteUserForm,getUserForm,getFields} = require('../services/formService')
 const {getiForm} = require("../services/iformServices")
 
 //ADD USER
@@ -137,6 +137,44 @@ exports.upload = asyncErrorHandler(async (_request,_response,next)=>{
     const base64Data = fileBuffer.toString('base64');
     const dataUrl = `data:${req.file.mimetype};base64,${base64Data}`;
     let serviceResponse = { url: dataUrl }
+    _response.status(codes.success)
+    .json(serviceResponse);
+})
+
+exports.dashboard = asyncErrorHandler(async (_request,_response,next)=>{
+    let _id = _request.params.id
+    let formFields = await getFields(_id)
+    const values = formFields.map(field => field.value);
+    const status = formFields.map(field => field.status);
+    const statusData = status.filter(value => value !== undefined);
+    const statusLength = statusData.length;
+    const approved = statusData.filter(value => value.toLowerCase().includes('approved')).length;
+    const nonApproved = statusLength-approved;
+    const totalLength = values.filter(value => value !== undefined).length;
+    const empty = values.filter(value => value == '').length
+    const nonEempty = totalLength - empty;
+    let dataSource = formFields.map((v)=>{
+        let name =v.name;
+        let value = v.value;
+        let status = v.status == 'upending' ?"Pending With You" : v.status == 'apending' ? "Pending With Admin" : v.status == 'approved' ? 'Approved' : 'Reject';
+        let comments = v.comments;
+        // if(status.toLowerCase().includes('upending'))
+        // {
+        //     status = "Pending With You"
+        // }
+        // if(status.toLowerCase().includes('apending'))
+        // {
+        //     status = "Pending With Admin"
+        // }
+        return {name,value,status,comments}
+    });
+    dataSource = dataSource.filter((obj)=>{
+        return obj.value !== undefined
+    })
+
+    let serviceResponse = {
+        totalLength, empty, nonEempty, statusLength, approved, nonApproved, dataSource, formFields
+    } 
     _response.status(codes.success)
     .json(serviceResponse);
 })
