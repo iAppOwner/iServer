@@ -156,7 +156,7 @@ exports.dashboard = asyncErrorHandler(async (_request,_response,next)=>{
     let dataSource = formFields.map((v)=>{
         let name =v.name;
         let value = v.value;
-        let status = v.status == 'upending' ?"Pending With You" : v.status == 'apending' ? "Pending With Admin" : v.status == 'approved' ? 'Approved' : 'Reject';
+        let status = v.status == 'upending' ?"Pending With You" : v.status == 'apending' ? "Pending With Admin" : v.status == 'approved' ? 'Approved' : 'Rejected';
         let comments = v.comments;
         return {name,value,status,comments}
     });
