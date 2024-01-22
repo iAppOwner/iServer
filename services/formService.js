@@ -64,11 +64,10 @@ exports.getUserForm = async(formdata) => {
     try
     {
         const projection = {
-            'sections.fields': 1,
+            'sections.fields': 1,   
             '_id': 0,
           };
           
-          console.log('Form fields for userid:', projection);
           // Find documents with the specified userid and projection
           let result = await formModal.find({userid},projection);
           
